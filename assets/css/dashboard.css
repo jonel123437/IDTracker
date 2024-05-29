@@ -1,1 +1,12 @@
+.dropdown-logout {
+    display: none;
+    position: absolute;
+    right: 35px;
+    background-color: rgb(221, 221, 221);
+    padding: 15px;
+}
 
+.dropdown-logout a:hover {
+    background-color: rgb(255, 255, 255);
+    padding: 1px;
+}
