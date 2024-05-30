@@ -9,8 +9,8 @@
     </head>
     <body>
         <?php
-            include "Model/search.php";
-            include "Model/login.php";
+            include "Model/Modellogin.php";
+            include "Model/searchModel.php";
         ?>
         <header>
             <div class="header_container">
@@ -25,11 +25,13 @@
         <div class="dropdown-logout">
             <a href="?page=profile">Profile</a>
             <br>
+            <a href="?page=dashboard">Dashboard</a>
+            <br>
             <a href="#" onclick="confirmLogout()">Logout</a>
         </div>
         <div id="greetings" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
             <h1>WELCOME TO DASHBOARD</h1>
-            <form action="?page=search" method="post">
+            <form action="" method="post">
                 <div>
                     <input type="text" placeholder="Search ID" name="id_no">
                     <button type="submit" id="search_id">></button>
@@ -38,4 +40,5 @@
         </div>
     </body>
     <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/profile.js"></script>
 </html>
