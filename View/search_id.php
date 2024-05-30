@@ -10,8 +10,8 @@
     </head>
     <body>
         <?php
-            include "Model/login.php";
-            include "Model/search.php";
+            include "Model/loginModel.php";
+            include "Model/searchModel.php";
         ?>
         <header>
             <div class="header_container">
