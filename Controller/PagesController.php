@@ -21,5 +21,11 @@
         function search() {
             include "View/search_id.php";
         }
+        function back_profile() {
+            include "View/back_profile.php";
+        }
+        function admin() {
+            include "View/admin.php";
+        }
     }
 ?>  
