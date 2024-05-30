@@ -8,7 +8,7 @@
     </head>
     <body>
         <?php
-            require "Model/login.php";
+            require "Model/loginModel.php";
         ?>
         <header>
             <div class="header_container">
