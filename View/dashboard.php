@@ -9,7 +9,7 @@
     </head>
     <body>
         <?php
-            include "Model/Modellogin.php";
+            include "Model/loginModel.php";
             include "Model/searchModel.php";
         ?>
         <header>
