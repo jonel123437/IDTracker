@@ -26,4 +26,5 @@
     </body>
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/profile.js"></script>
+    <script src="assets/js/admin.js"></script>
 </html>
