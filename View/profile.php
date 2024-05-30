@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php   
-            include "Model/profile.php";
+            include "Model/profileModel.php";
         ?>
         <header>
             <div class="header_container">
