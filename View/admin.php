@@ -6,8 +6,9 @@
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/home.css">
         <link rel="stylesheet" href="./assets/css/dashboard.css">
+        <link rel="stylesheet" href="./assets/css/admin.css">
     </head>
-    <body>
+    <body id="body">
         <header>
             <div class="header_container">
                 <h1 id="admin_title" style="cursor: pointer; margin-left: 1rem;">ID Tracker</h1>
@@ -23,9 +24,12 @@
             <br>
             <a href="#" onclick="confirmLogout()">Logout</a>
         </div>
-        <div>
-            <h1>Welcome Admin!</h1>
-            <button>View users</button>
+        <div id="admin_dashboard">
+            <h1 class="title1">Welcome Admin!</h1>
+            <button class="button">View users</button>
+            <button class="button">Edit</button>
+            <br>
+            <p class="des">click anywhere to continue</p>
         </div>
     </body>
     <script src="assets/js/dashboard.js"></script>
