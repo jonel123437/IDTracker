@@ -23,6 +23,10 @@
             <br>
             <a href="#" onclick="confirmLogout()">Logout</a>
         </div>
+        <div>
+            <h1>Welcome Admin!</h1>
+            <button>View users</button>
+        </div>
     </body>
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/profile.js"></script>
