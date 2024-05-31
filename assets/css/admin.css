@@ -1,0 +1,25 @@
+#admin_dashboard {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+button {
+    border-radius: 10px;
+    border: none;
+    background-color: #dddddd;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: none;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #1177d1;
+}
+
+#admin_dashboard button {
+    margin-top: 1.5rem;
+}
