@@ -7,14 +7,17 @@ include "database.php";
         $email = $_POST["email"];
         $password = $_POST["password"];
         
-        $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = $conn->query($sql);
-
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
         if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $hashed_password = $row['password'];
-
-            if(password_verify($password, $hashed_password)) {
+            $stored_password = $row['password'];
+    
+            if(password_verify($password, $stored_password)) {
                 $fullNameProfile = $row['full_name'];
                 $id_noProfile = $row["id_no"];
                 
@@ -22,26 +25,41 @@ include "database.php";
                 
                 $_SESSION['full_name'] = $fullNameProfile;
                 $_SESSION["id_no"] = $id_noProfile;
-
+    
                 header("Location: ?page=dashboard");
+                exit(); 
             } else {
-                $error = true;
+                if($password === $stored_password) {
+                    $fullNameProfile = $row['full_name'];
+                    $id_noProfile = $row["id_no"];
+                    
+                    session_start();
+                    
+                    $_SESSION['full_name'] = $fullNameProfile;
+                    $_SESSION["id_no"] = $id_noProfile;
+    
+                    header("Location: ?page=dashboard");
+                    exit();
+                } else {
+                    $error = true;
+                }
             }
         } else {
             $error = true;
         }
     }
+    
 
-    session_start(); // Start the session to access session variables
+    session_start();
 
     if(isset($_SESSION['full_name'])) {
         $fullNameProfile = $_SESSION['full_name'];
     } else {
-        $fullNameProfile = "Guest"; // Default value if full name is not set
+        $fullNameProfile = "Guest"; 
     }
     if(isset($_SESSION['id_no'])) {
         $id_noProfile = $_SESSION['id_no'];
     } else {
-        $id_noProfile = "N/A"; // Default value if ID number is not set
+        $id_noProfile = "N/A";
     }
 ?>
