@@ -31,6 +31,9 @@
             case 'admin':   
                             $pagesController->admin();
                             break;
+            case 'viewUsers':
+                                $pagesController->viewUsers();
+                                break;
 
             default:    
                         $pagesController->error();
