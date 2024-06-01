@@ -1,34 +1,37 @@
 <?php
-    include "database.php";
+include "database.php";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $password = $_POST["password"];
         
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = $conn->query($sql);
 
         if($result->num_rows > 0) {
-            // User found, retrieve the full name
             $row = $result->fetch_assoc();
-            $fullNameProfile = $row['full_name'];
-            $id_noProfile = $row["id_no"];
-            // Start the session
-            session_start();
-            
-            // Store the full name in a session variable
-            $_SESSION['full_name'] = $fullNameProfile;
-            $_SESSION["id_no"] = $id_noProfile;
+            $hashed_password = $row['password'];
 
-            // Redirect to the dashboard
-            header("Location: ?page=dashboard");
+            if(password_verify($password, $hashed_password)) {
+                $fullNameProfile = $row['full_name'];
+                $id_noProfile = $row["id_no"];
+                
+                session_start();
+                
+                $_SESSION['full_name'] = $fullNameProfile;
+                $_SESSION["id_no"] = $id_noProfile;
+
+                header("Location: ?page=dashboard");
+            } else {
+                echo "Incorrect password";
+            }
         } else {
+            echo "User not found";
         }
     }
 
     session_start(); // Start the session to access session variables
 
-    // Check if the full name is set in the session
     if(isset($_SESSION['full_name'])) {
         $fullNameProfile = $_SESSION['full_name'];
     } else {
