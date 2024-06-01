@@ -1,4 +1,5 @@
-#admin_dashboard {
+#admin_dashboard,
+#viewUsers {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -22,4 +23,13 @@ button:hover {
 
 #admin_dashboard button {
     margin-top: 1.5rem;
+}
+
+table {
+    padding: 10px;
+    border-radius: 1rem;
+}
+
+th, td, tr {
+    padding: 10px;
 }

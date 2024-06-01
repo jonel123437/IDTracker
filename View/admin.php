@@ -26,10 +26,12 @@
         </div>
         <div id="admin_dashboard">
             <h1 class="title1">Welcome Admin!</h1>
-            <button class="button">View users</button>
+            <button class="button" id="users_button">View users</button>
             <button class="button">Edit</button>
             <br>
             <p class="des">click anywhere to continue</p>
+        </div>
+        <div id="viewUsers">
         </div>
     </body>
     <script src="assets/js/dashboard.js"></script>
