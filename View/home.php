@@ -24,7 +24,7 @@
             <h1>WELCOME TO CITE ID TRACKER</h1>
         </div>
         <footer>
-            <p>~ Created by GROUP 3 ~</p>
+            <p>~ Created by GROUP 1 ~</p>
         </footer>
     </body>
     <script src="./assets/js/home.js"></script>
