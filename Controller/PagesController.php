@@ -27,5 +27,8 @@
         function admin() {
             include "View/admin.php";
         }
+        function viewUsers() {
+            include "View/viewUsers.php";
+        }
     }
 ?>  
