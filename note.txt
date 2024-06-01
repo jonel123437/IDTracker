@@ -1,0 +1,19 @@
+Group 1
+Leader:  Jamewil Melloria
+Members:  Jorge Candilada
+          Jonel Escaran
+          Ruel Jumao-as
+          Ryannel Palajos
+          Neil Angelo Unabia
+
+Contributions:
+  Jamewil Melloria - register related
+  Jorge Candilada - login related
+  Jonel Escaran - mvc, profile, search realated
+  Ruel Jumao-as - home related
+  Ryannel Palajos - admin related
+  Neil Angelo Unabia - dashboard related
+
+xampp and php version: 8.2.12 / PHP 8.2.12
+github link: https://github.com/jonel123437/IDTracker
+
