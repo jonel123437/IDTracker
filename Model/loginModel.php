@@ -1,5 +1,7 @@
 <?php
 include "database.php";
+    $success = false; 
+    $error = false; 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
