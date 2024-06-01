@@ -60,8 +60,6 @@
             </div>
             <div class="settings">⚙️</div>
         </div>
-        <button id="next_button">></button>
-        <button id="prev_button"><</button> 
     </body>
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/profile.js"></script>
