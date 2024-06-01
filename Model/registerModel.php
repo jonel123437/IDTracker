@@ -7,8 +7,10 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "INSERT INTO users(full_name, id_no, email, password) VALUES ('$full_name', '$id_no', '$email', '$password')";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        $sql = "INSERT INTO users(full_name, id_no, email, password) VALUES ('$full_name', '$id_no', '$email', '$hashed_password')";
+    
         if($conn->query($sql) === TRUE) {
         } else {
         }
