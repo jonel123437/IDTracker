@@ -27,6 +27,9 @@
                 <?php if($error): ?>
                     <p id="exist_id" style="color: red;">ID already exists. Please choose a different ID.</p>
                 <?php endif; ?>
+                <?php if($success): ?>
+                    <p id="exist_id" style="color: green;">Registered successfully</p>
+                <?php endif; ?>
                 <div class="input_container">
                     <input type="text" placeholder="Full Name" name="full_name" pattern="[A-Za-z\s]+" title="Please enter only alphabetic characters" required>
                 </div>
