@@ -46,3 +46,11 @@ form {
 .container.error {
     border: 3px solid red;
 }
+
+.container.success {
+    border: 3px solid green;
+}
+
+#exist_id {
+    padding-bottom: 1rem;
+}
