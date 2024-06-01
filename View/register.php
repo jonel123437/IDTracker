@@ -21,23 +21,26 @@
                 </div>
             </div>
         </header>
-        <div class="container">
+        <div class="container <?php if($success) echo 'success'; ?><?php if($error) echo ' error'; ?>">
             <form action="?page=register" method="post">
                 <h1 style="margin-bottom: 2rem;">Register</h1>
+                <?php if($error): ?>
+                    <p id="exist_id" style="color: red;">ID already exists. Please choose a different ID.</p>
+                <?php endif; ?>
                 <div class="input_container">
-                    <input type="text" placeholder="Full Name" name="full_name">
+                    <input type="text" placeholder="Full Name" name="full_name" pattern="[A-Za-z\s]+" title="Please enter only alphabetic characters" required>
                 </div>
                 <div class="input_container">
-                    <input type="text" placeholder="Id No." name="id_no">
+                    <input type="text" placeholder="Id No." name="id_no" pattern="[0-9-]*" title="Please enter only numbers" required>
                 </div>
                 <div class="input_container">
-                    <input type="email" placeholder="Email" name="email">
+                    <input type="email" placeholder="Email" name="email" required>
                 </div>
                 <div class="input_container">
-                    <input type="password" placeholder="Password" name="password">
+                    <input type="password" placeholder="Password" name="password" minlength="8" required>
                 </div>
                 <div class="input_container">
-                    <input class="signup" type="submit" style="background-color: 1177d1 !important; width: 100%; cursor: pointer;">
+                    <input value="Signup" class="signup" type="submit" style="background-color: 1177d1 !important; width: 100%; cursor: pointer;">
                 </div>
             </form>
         </div>
