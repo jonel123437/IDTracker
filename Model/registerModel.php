@@ -1,44 +1,19 @@
 <?php
-    include "database.php";
+include "database.php";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $full_name = $_POST["full_name"];
+        $id_no = $_POST["id_no"];
         $email = $_POST["email"];
         $password = $_POST["password"];
-        
-        $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = $conn->query($sql);
 
-        if($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $hashed_password = $row['password'];
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            if(password_verify($password, $hashed_password)) {
-                $fullNameProfile = $row['full_name'];
-                $id_noProfile = $row["id_no"];
-                
-                session_start();
-                
-                $_SESSION['full_name'] = $fullNameProfile;
-                $_SESSION["id_no"] = $id_noProfile;
+        $sql = "INSERT INTO users(full_name, id_no, email, password) VALUES ('$full_name', '$id_no', '$email', '$hashed_password')";
 
-                header("Location: ?page=dashboard");
-            } else {
-            }
+        if($conn->query($sql) === TRUE) {
         } else {
         }
-    }
-
-    session_start(); // Start the session to access session variables
-
-    // Check if the full name is set in the session
-    if(isset($_SESSION['full_name'])) {
-        $fullNameProfile = $_SESSION['full_name'];
-    } else {
-        $fullNameProfile = "Guest"; // Default value if full name is not set
-    }
-    if(isset($_SESSION['id_no'])) {
-        $id_noProfile = $_SESSION['id_no'];
-    } else {
-        $id_noProfile = "N/A"; // Default value if ID number is not set
     }
 ?>
