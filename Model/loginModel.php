@@ -23,10 +23,10 @@ include "database.php";
 
                 header("Location: ?page=dashboard");
             } else {
-                echo "Incorrect password";
+                $error = true;
             }
         } else {
-            echo "User not found";
+            $error = true;
         }
     }
 

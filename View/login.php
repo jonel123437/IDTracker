@@ -21,7 +21,7 @@
                 </div>
             </div>
         </header>
-        <div class="container">
+        <div class="container <?php if($error) echo 'error'; ?>">
             <form action="?page=login" method="post">
                 <h1 style="margin-bottom: 2rem;">LOGIN</h1>
                 <div class="input_container">

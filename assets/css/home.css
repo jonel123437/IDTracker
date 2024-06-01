@@ -42,3 +42,7 @@ form {
 .input_container {
     margin-bottom: 10px;
 }
+
+.container.error {
+    border: 3px solid red;
+}
