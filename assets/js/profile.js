@@ -38,20 +38,3 @@ document.querySelector('.settings').addEventListener('click', function(event) {
     
     isOpen = !isOpen; 
 });
-
-document.getElementById('next_button').addEventListener('click', function() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById('prev_button').style.display = "block";
-            next_button.style.display = "none";
-            document.getElementById("profile_id").innerHTML = xhttp.responseText;
-        }
-    };
-    xhttp.open("GET", "?page=back_profile", true);
-    xhttp.send();
-})
-
-document.getElementById('prev_button').addEventListener('click',function() {
-    window.location.href = "?page=profile"
-})
