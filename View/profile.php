@@ -43,13 +43,16 @@
             </div>
 
             <div class="profile_4">
-                <img class="dummylogo" src="<?php echo $imageSrc; ?>" alt="">
+                <img class="dummylogo" src="<?php echo $imageSrc; ?>" alt="Profile Image">
                 <span id="edit" class="edit_profile"> ⚙️</span>
+
+                <!-- Image upload form -->
                 <form class="upload_image" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="image">
-                    <input type="submit" value="submit">
+                    <input type="file" name="image" accept="image/*" required>
+                    <input type="submit" value="Upload">
                 </form>
-                <h1><?=$fullNameProfile?><span id="edit"> ⚙️</span></h1>
+
+                <h1><?= htmlspecialchars($fullNameProfile) ?><span id="edit"> ⚙️</span></h1>
                 <h4>NAME</h4>
             </div>
 

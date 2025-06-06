@@ -43,7 +43,7 @@
             </div>
 
             <div class="profile_4">
-                <img class="dummylogo" src="assets/img/dummy.jpg" alt="">
+                <img class="dummylogo" src="<?= htmlspecialchars($searchImage) ?>" alt="Profile Image">
                 <h1><?=$fullNameSearch?></h1>
                 <h4>NAME</h4>
             </div>

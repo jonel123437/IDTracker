@@ -15,12 +15,25 @@ document.getElementById('dropdown').addEventListener('click', function(event) {
     isOpen = !isOpen; 
 });
 
-function confirmLogout() {
-    var confirmLogout = confirm("Do you really want to logout?");
-    if (confirmLogout) {
-        window.location.href = "?page=home"; 
-    }
+function showLogoutModal() {
+    document.getElementById("logoutModal").style.display = "flex";
 }
+
+function closeLogoutModal() {
+    document.getElementById("logoutModal").style.display = "none";
+}
+
+function confirmLogout() {
+    window.location.href = "?page=logout";
+}
+
+// Close modal when clicking outside the modal content
+window.addEventListener("click", function (event) {
+    const modal = document.getElementById("logoutModal");
+    if (event.target === modal) {
+        closeLogoutModal();
+    }
+});
 
 document.getElementById('dashboard_title').addEventListener('click', function() {
     window.location.href = "?page=dashboard";

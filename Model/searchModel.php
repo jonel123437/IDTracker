@@ -1,37 +1,55 @@
 <?php
-    include "database.php";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id_noSearch = $_POST["id_no"];
-        
-        $sql = "SELECT * FROM users WHERE id_no = '$id_noSearch'";
-        $result = $conn->query($sql);
-    
-        if($result->num_rows > 0) {
-            // User found, retrieve the full name
-            $row = $result->fetch_assoc();
-            $fullNameSearch = $row['full_name'];
-            $id_noSearch = $row["id_no"];
-            // Store user data in session variables
-            $_SESSION['searched_full_name'] = $fullNameSearch;
-            $_SESSION["searched_id_no"] = $id_noSearch;
-    
-            header("Location: ?page=search");
-        } else {
-            // Handle case when user is not found
-        }
+include "database.php";
+
+$error = null;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id_noSearch = trim($_POST["id_no"]);
+
+    if (empty($id_noSearch)) {
+        $_SESSION['search_error'] = "Please enter an ID number.";
+        header("Location: ?page=dashboard");
+        exit();
     }
 
-    if(isset($_SESSION['searched_full_name'])) {
-        $fullNameSearch = $_SESSION['searched_full_name'];
+    $stmt = $conn->prepare("
+        SELECT u.full_name, u.id_no, up.file 
+        FROM users u
+        LEFT JOIN uploads up ON up.user_id = u.id
+        WHERE u.id_no = ?
+    ");
+    $stmt->bind_param("s", $id_noSearch);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        $_SESSION['searched_full_name'] = $row['full_name'];
+        $_SESSION['searched_id_no'] = $row['id_no'];
+        $_SESSION['searched_image'] = $row['file'] ?? null;
+
+        header("Location: ?page=search");
+        exit();
     } else {
-        $fullNameSearch = "Guest"; // Default value if full name is not set
+        $_SESSION['search_error'] = "No user found with that ID.";
+        header("Location: ?page=dashboard");
+        exit();
     }
-    
-    // Check if the ID number is set in the session
-    if(isset($_SESSION['searched_id_no'])) {
-        $id_noSearch = $_SESSION['searched_id_no'];
-    } else {
-        $id_noSearch = "N/A"; // Default value if ID number is not set
-    }
+}
+$fullNameSearch = $_SESSION['searched_full_name'] ?? "Guest";
+$id_noSearch = $_SESSION['searched_id_no'] ?? "N/A";
+$searchImage = $_SESSION['searched_image'] ?? "assets/img/dummy.jpg";
+
+$searchError = $_SESSION['search_error'] ?? null;
+if ($searchError) {
+    unset($_SESSION['search_error']);
+}
+
 ?>
+
+

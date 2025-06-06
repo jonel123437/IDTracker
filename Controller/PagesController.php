@@ -27,5 +27,8 @@
         function viewUsers() {
             include "View/viewUsers.php";
         }
+        function logout() {
+            include "Model/logout.php";
+        }
     }
 ?>  

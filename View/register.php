@@ -1,15 +1,14 @@
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>idTracker | Register</title>
-        <link rel="stylesheet" href="./assets/css/home.css">
-        <link rel="stylesheet" href="./assets/css/styles.css">
+        <link rel="stylesheet" href="./assets/css/home.css" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        <link rel="stylesheet" href="./assets/css/register.css" />
     </head>
     <body>
-        <?php
-            require "Model/registerModel.php";
-        ?>
+        <?php require "Model/registerModel.php"; ?>
         <header>
             <div class="header_container">
                 <h1 id="title" style="cursor: pointer; margin-left: 1rem;">ID Tracker</h1>
@@ -21,32 +20,106 @@
                 </div>
             </div>
         </header>
-        <div class="container <?php if($success) echo 'success'; ?><?php if($error) echo ' error'; ?>">
+        <div id="register_container" class="container <?php if($success) echo 'success'; ?><?php if($error) echo ' error'; ?>">
             <form action="?page=register" method="post">
                 <h1 style="margin-bottom: 2rem;">Register</h1>
+
                 <?php if($error): ?>
-                    <p id="exist_id" style="color: red;">ID already exists. Please choose a different ID.</p>
+                    <p id="error_msg" style="color: red;"><?php echo $error; ?></p>
                 <?php endif; ?>
+
+                <?php if($email_exists): ?>
+                    <p id="error_msg" style="color: red;">Email already exists. Please use a different email.</p>
+                <?php endif; ?>
+
                 <?php if($success): ?>
-                    <p id="exist_id" style="color: green;">Registered successfully</p>
+                    <p id="success_msg" style="color: green;">Registered successfully</p>
                 <?php endif; ?>
-                <div class="input_container">
-                    <input type="text" placeholder="Full Name" name="full_name" pattern="[A-Za-z\s]+" title="Please enter only alphabetic characters" required>
+
+                <div class="input_container" style="margin-top: 2rem;">
+                    <input 
+                        type="text" 
+                        name="full_name" 
+                        id="full_name" 
+                        pattern="[A-Za-z\s]+" 
+                        title="Please enter only alphabetic characters" 
+                        required 
+                        placeholder=" " 
+                    />
+                    <label for="full_name">Full Name</label>
                 </div>
+
                 <div class="input_container">
-                    <input type="text" placeholder="Id No." name="id_no" pattern="[0-9-]*" title="Please enter only numbers" required>
+                    <input 
+                        type="text" 
+                        name="id_no" 
+                        id="id_no" 
+                        required 
+                        placeholder=" " 
+                        maxlength="16"
+                    />
+                    <label for="id_no">ID No. (e.g., DIET-2022-32-179)</label>
                 </div>
+
                 <div class="input_container">
-                    <input type="email" placeholder="Email" name="email" required>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="email" 
+                        required 
+                        placeholder=" " 
+                    />
+                    <label for="email">Email</label>
                 </div>
+
                 <div class="input_container">
-                    <input type="password" placeholder="Password" name="password" minlength="8" required>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password" 
+                        minlength="8" 
+                        required 
+                        placeholder=" " 
+                    />
+                    <label for="password">Password</label>
                 </div>
+
                 <div class="input_container">
-                    <input value="Signup" class="signup" type="submit" style="background-color: 1177d1 !important; width: 100%; cursor: pointer;">
+                    <input 
+                        value="Signup" 
+                        class="signup" 
+                        type="submit" 
+                        style="background-color: #1177d1 !important; width: 100%; cursor: pointer;"
+                    />
                 </div>
             </form>
         </div>
     </body>
+    <script>
+        const input = document.getElementById('id_no');
+
+        input.addEventListener('input', function(e) {
+            // Remove everything except digits
+            let digits = input.value.replace(/\D/g, '');
+
+            // Limit length to 9 digits (4 + 2 + 3)
+            digits = digits.substring(0, 9);
+
+            // Build the formatted value
+            let formatted = 'DIET-';
+
+            if (digits.length > 0) {
+                formatted += digits.substring(0, 4);
+            }
+            if (digits.length >= 5) {
+                formatted += '-' + digits.substring(4, 6);
+            }
+            if (digits.length >= 7) {
+                formatted += '-' + digits.substring(6, 9);
+            }
+
+            input.value = formatted;
+        });
+    </script>
     <script src="./assets/js/home.js"></script>
 </html>

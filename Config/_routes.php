@@ -28,6 +28,9 @@
             case 'admin':   
                             $pagesController->admin();
                             break;
+            case 'logout':   
+                            $pagesController->logout();
+                            break;
             case 'viewUsers':
                                 $pagesController->viewUsers();
                                 break;
