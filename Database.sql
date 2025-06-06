@@ -1,20 +1,21 @@
-CREATE DATABASE id_tracker;
-use id_tracker;
+CREATE DATABASE IF NOT EXISTS id_tracker;
+USE id_tracker;
 
-CREATE TABLE users (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR(255),
-    id_no VARCHAR(255),
-    email VARCHAR(255),
-    password VARCHAR(255)
-);
-
-CREATE TABLE uploads (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    file VARCHAR(255),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+    full_name VARCHAR(255) NOT NULL,
+    id_no VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS uploads (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    file VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
 
 INSERT INTO users (full_name, id_no, email, password) 
 VALUES 
